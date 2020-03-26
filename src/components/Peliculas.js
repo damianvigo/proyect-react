@@ -10,7 +10,7 @@ class Peliculas extends Component {
 
   cambiarTitulo = () => {
     
-    var { peliculas } = this.state;
+    let { peliculas } = this.state;
     peliculas[2].titulo = "Espartaco"; // react sabe que tiene que cambiar por que esta la key={i}
 
     this.setState({

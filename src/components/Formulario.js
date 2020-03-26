@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Sidebar from './Sidebar';
 
-class Blog extends Component {
+class Formulario extends Component {
 
   nombreRef = React.createRef(); // guardando el dato del formulario
   apellidoRef = React.createRef();
@@ -110,4 +110,4 @@ class Blog extends Component {
 
 }
 
-export default Blog;
+export default Formulario;
