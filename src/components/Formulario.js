@@ -70,23 +70,29 @@ class Formulario extends Component {
         <form className="mid-form" onSubmit={this.recibirFormulario} /* onChange={this.recibirFormulario} muestra los datos reactivamente*/>
       <div className="form-group">
         <label htmlFor="apellidos">Apellido</label>
-        <input type="text" name="apellido" ref={this.apellidoRef} />
+        <input id="apellidos" type="text" name="apellido" ref={this.apellidoRef} />
       </div>
 
       <div className="form-group">
         <label htmlFor="nombre">Nombre</label>
-        <input type="text" name="nombre" ref={this.nombreRef} />
+        <input id="nombre" type="text" name="nombre" ref={this.nombreRef} />
       </div>
 
       <div className="form-group">
         <label htmlFor="bio">Biografía</label>
-        <textarea name="bio" ref={this.bioRef}></textarea>
+        <textarea id="bio" name="bio" ref={this.bioRef}></textarea>
       </div>
 
       <div className="form-group radibuttons">
-       <input type="radio" name="genero" value="hombre" ref={this.generoHombreRef} />Hombre
-       <input type="radio" name="genero" value="mujer" ref={this.generoMujerRef} />Mujer
-       <input type="radio" name="genero" value="otro" ref={this.generoOtroRef} />Otro
+       <label htmlFor="hombre">
+       <input id="hombre" type="radio" name="genero" value="hombre" ref={this.generoHombreRef} />Hombre
+       </label>
+       <label htmlFor="mujer">
+       <input id="mujer" type="radio" name="genero" value="mujer" ref={this.generoMujerRef} />Mujer
+       </label>
+       <label htmlFor="otro">
+       <input id="otro" type="radio" name="genero" value="otro" ref={this.generoOtroRef} />Otro
+       </label>
       </div>
 
       <div className="clearfix"></div>
