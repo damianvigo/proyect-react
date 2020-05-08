@@ -34,7 +34,7 @@ class Router extends Component {
             exact
             path='/redirect/:search'
             render={(props) => {
-              var search = props.match.params.search;
+              let search = props.match.params.search;
               return <Redirect to={'/blog/busqueda/' + search} />;
             }}
           />
@@ -55,8 +55,8 @@ class Router extends Component {
             exact
             path='/pruebas/:nombre/:apellido?'
             render={(props) => {
-              var nombre = props.match.params.nombre;
-              var apellido = props.match.params.apellido;
+              let nombre = props.match.params.nombre;
+              let apellido = props.match.params.apellido;
 
               return (
                 <div id='content'>

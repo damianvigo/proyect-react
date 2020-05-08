@@ -22,7 +22,7 @@ class CreateArticle extends Component {
   componentWillMount() {
     this.validator = new SimpleReactValidator({
       messages: {
-        required: 'Se necesita completar este campo :)',
+        required: '* Se necesita completar este campo',
       },
     }); /* en esta propiedad esta cargado el validator */
   }
@@ -63,12 +63,12 @@ class CreateArticle extends Component {
               /* si es diferente a null, subir el archivo a la base de datos */
 
               // Sacar el id del articulo guardado
-              var articleId = this.state.article._id;
+              let articleId = this.state.article._id;
 
               // Crear form data y añadir fichero
               const formData = new FormData(); /* peticion para adjuntar un archivo */
 
-              formData.append(/* metodo append vincularle un fichero */ 'file0', this.state.selectedFile, this.state.selectedFile.name);
+              formData.append('file0', this.state.selectedFile, this.state.selectedFile.name); /* metodo append vincularle un fichero */
 
               // Peticion ajax
               axios.post(this.url + '/upload-image/' + articleId, formData).then((res) => {
@@ -122,14 +122,11 @@ class CreateArticle extends Component {
           <h1 className='subheader'>Crear articulo</h1>
 
           <form className='mid-form' onSubmit={this.saveArticle}>
-            {' '}
-            {/* metodo que se llama cuando se enviar el form */}
             <div className='form-group'>
               <label htmlFor='title'>Titulo</label>
               <input type='text' name='title' ref={this.titleRef} onChange={this.changeState} />
               {/* validacion */}
-              {this.validator.message('title', this.state.article.title, 'required')}{' '}
-              {/* 3 parametros del message. // alphanumericos */}
+              {this.validator.message('title', this.state.article.title, 'required')} {/* 3 parametros del message. // alphanumericos */}
             </div>
             <div className='form-group'>
               <label htmlFor='content'>Contenido</label>
