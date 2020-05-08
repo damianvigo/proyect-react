@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Sidebar from './Sidebar';
 
 class Formulario extends Component {
-
-  nombreRef = React.createRef(); // guardando el dato del formulario
+  nombreRef = React.createRef(); // guardando el input
   apellidoRef = React.createRef();
   bioRef = React.createRef();
   generoHombreRef = React.createRef();
@@ -11,109 +10,112 @@ class Formulario extends Component {
   generoOtroRef = React.createRef();
 
   state = {
-    user: {}
+    user: {},
   };
 
   recibirFormulario = (e) => {
     e.preventDefault();
-    
-    var genero = 'hombre';
 
-    if(this.generoHombreRef.current.checked){
-      genero = this.generoHombreRef.current.value;
-    } else if(this.generoMujerRef.current.checked){
+    let genero = 'hombre';
+
+    if (this.generoHombreRef.current.checked) {
+      genero = this.generoHombreRef.current.value; // guardando el valor del input del usuario
+    } else if (this.generoMujerRef.current.checked) {
       genero = this.generoMujerRef.current.value;
     } else {
       genero = this.generoOtroRef.current.value;
     }
 
-    var user = {
+    let user = {
       nombre: this.nombreRef.current.value,
       apellido: this.apellidoRef.current.value,
       bio: this.bioRef.current.value,
-      genero: genero
-    }
+      genero: genero,
+    };
 
     this.setState({
-      user: user
+      user: user,
     });
 
-    console.log('formulario enviado')
+    console.log('formulario enviado');
     console.log(user); // para acceder al valor del objeto
-   
-  }
+  };
 
   render() {
-    
-    if(this.state.user.nombre) {
+    if (this.state.user.nombre) {
       var user = this.state.user;
     }
 
-    return(
-      <div id="formulario">
-       <h1 className="subheader">Formulario</h1>
+    return (
+      <div id='formulario'>
+        <h2 className='subheader'>Formulario</h2>
 
         {/* Mostrar datos del formulario */}
-        {this.state.user.nombre &&
-          <div id="user-data"> 
-            <p>Nombre: <strong>{user.nombre}</strong></p>
-            <p>Apellido: <strong>{user.apellido}</strong></p>
-            <p>Bio: <strong>{user.bio}</strong></p>
-            <p>Genero: <strong>{user.genero}</strong></p>
+        {this.state.user.nombre && (
+          <div id='user-data'>
+            <p>
+              Nombre: <strong>{user.nombre}</strong>
+            </p>
+            <p>
+              Apellido: <strong>{user.apellido}</strong>
+            </p>
+            <p>
+              Bio: <strong>{user.bio}</strong>
+            </p>
+            <p>
+              Genero: <strong>{user.genero}</strong>
+            </p>
           </div>
-        }
+        )}
 
-      <div className="center">
-      <div id="content">
-        {/* listado de articulos que vendran del api rest de node. Crear un formulario */}
-        
-        <form className="mid-form" onSubmit={this.recibirFormulario} /* onChange={this.recibirFormulario} muestra los datos reactivamente*/>
-      <div className="form-group">
-        <label htmlFor="apellidos">Apellido</label>
-        <input id="apellidos" type="text" name="apellido" ref={this.apellidoRef} />
-      </div>
+        <div className='center'>
+          <div id='content'>
+            {/* Crear un formulario */}
 
-      <div className="form-group">
-        <label htmlFor="nombre">Nombre</label>
-        <input id="nombre" type="text" name="nombre" ref={this.nombreRef} />
-      </div>
+            <form
+              className='mid-form'
+              onSubmit={this.recibirFormulario} /* onChange={this.recibirFormulario} muestra los datos reactivamente*/
+            >
+              <div className='form-group'>
+                <label htmlFor='apellidos'>Apellido</label>
+                <input id='apellidos' type='text' name='apellido' ref={this.apellidoRef} />
+              </div>
 
-      <div className="form-group">
-        <label htmlFor="bio">Biografía</label>
-        <textarea id="bio" name="bio" ref={this.bioRef}></textarea>
-      </div>
+              <div className='form-group'>
+                <label htmlFor='nombre'>Nombre</label>
+                <input id='nombre' type='text' name='nombre' ref={this.nombreRef} />
+              </div>
 
-      <div className="form-group radibuttons">
-       <label htmlFor="hombre">
-       <input id="hombre" type="radio" name="genero" value="hombre" ref={this.generoHombreRef} />Hombre
-       </label>
-       <label htmlFor="mujer">
-       <input id="mujer" type="radio" name="genero" value="mujer" ref={this.generoMujerRef} />Mujer
-       </label>
-       <label htmlFor="otro">
-       <input id="otro" type="radio" name="genero" value="otro" ref={this.generoOtroRef} />Otro
-       </label>
-      </div>
+              <div className='form-group'>
+                <label htmlFor='bio'>Biografía</label>
+                <textarea id='bio' name='bio' ref={this.bioRef}></textarea>
+              </div>
 
-      <div className="clearfix"></div>
+              <div className='form-group radibuttons'>
+                <label htmlFor='hombre'>
+                  <input id='hombre' type='radio' name='genero' value='hombre' ref={this.generoHombreRef} />
+                  Hombre
+                </label>
+                <label htmlFor='mujer'>
+                  <input id='mujer' type='radio' name='genero' value='mujer' ref={this.generoMujerRef} />
+                  Mujer
+                </label>
+                <label htmlFor='otro'>
+                  <input id='otro' type='radio' name='genero' value='otro' ref={this.generoOtroRef} />
+                  Otro
+                </label>
+              </div>
 
-      <input type="submit" value="Enviar" className="btn btn-success" />
+              <div className='clearfix'></div>
 
-    </form>
-
-      </div>
-
-      <Sidebar 
-        blog="false"
-      /> {/* props */}
-      </div>
-
-     
+              <input type='submit' value='Enviar' className='btn btn-success' />
+            </form>
+          </div>
+          <Sidebar blog='false' /> {/* props */}
+        </div>
       </div>
     );
-
   }
-
 }
 
 export default Formulario;
